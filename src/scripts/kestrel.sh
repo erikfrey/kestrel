@@ -4,14 +4,14 @@
 #
 # All java services require the same directory structure:
 #   /opt/local/$APP_NAME-$VERSION
-#   /var/log/$APP_NAME (chown daemon, chmod 775)
+#   /mnt/log/$APP_NAME (chown daemon, chmod 775)
 
 APP_NAME="kestrel"
 VERSION="1.2.1"
-APP_HOME="/opt/local/$APP_NAME/current"
+APP_HOME="/usr/local/$APP_NAME/current"
 AS_USER="daemon"
-DAEMON="/usr/local/bin/daemon"
-QUEUE_PATH="/var/spool/kestrel"
+DAEMON="/usr/bin/daemon"
+QUEUE_PATH="/mnt/spool/kestrel"
 
 HEAP_OPTS="-Xmx2048m -Xms1024m -XX:NewSize=256m"
 JMX_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=22134 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false"
@@ -20,7 +20,7 @@ JAVA_OPTS="-server -verbosegc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+Pr
 
 pidfile="/var/run/$APP_NAME.pid"
 daemon_args="--name $APP_NAME --pidfile $pidfile"
-daemon_start_args="--user $AS_USER --stdout=/var/log/$APP_NAME/stdout --stderr=/var/log/$APP_NAME/error"
+daemon_start_args="--user $AS_USER --stdout=/mnt/log/$APP_NAME/stdout --stderr=/mnt/log/$APP_NAME/error"
 
 function running() {
   $DAEMON $daemon_args --running
@@ -40,7 +40,7 @@ function find_java() {
 
 
 # dirs under /var/run can go away between reboots.
-for p in /var/run/$APP_NAME /var/log/$APP_NAME $QUEUE_PATH; do
+for p in /var/run/$APP_NAME /mnt/log/$APP_NAME $QUEUE_PATH; do
   if [ ! -d $p ]; then
     mkdir -p $p
     chmod 775 $p
