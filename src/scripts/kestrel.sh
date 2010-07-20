@@ -22,11 +22,11 @@ pidfile="/var/run/$APP_NAME.pid"
 daemon_args="--name $APP_NAME --pidfile $pidfile"
 daemon_start_args="--user $AS_USER --stdout=/mnt/log/$APP_NAME/stdout --stderr=/mnt/log/$APP_NAME/error"
 
-function running() {
+running() {
   $DAEMON $daemon_args --running
 }
 
-function find_java() {
+find_java() {
   if [ ! -z "$JAVA_HOME" ]; then
     return
   fi
