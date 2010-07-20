@@ -9,7 +9,7 @@
 APP_NAME="kestrel"
 VERSION="1.2.1"
 APP_HOME="/usr/local/$APP_NAME"
-AS_USER="daemon"
+AS_USER="root"
 DAEMON="/usr/bin/daemon"
 QUEUE_PATH="/mnt/spool/kestrel"
 
