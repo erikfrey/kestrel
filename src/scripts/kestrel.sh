@@ -20,7 +20,7 @@ JAVA_OPTS="-server -verbosegc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+Pr
 
 pidfile="/var/run/$APP_NAME.pid"
 daemon_args="--name $APP_NAME --pidfile $pidfile"
-daemon_start_args="--user $AS_USER --stdout=/mnt/log/$APP_NAME/stdout --stderr=/mnt/log/$APP_NAME/error"
+daemon_start_args="--user $AS_USER --stdout=/mnt/log/$APP_NAME/stdout --stderr=/mnt/log/$APP_NAME/error --respawn"
 
 running() {
   $DAEMON $daemon_args --running
