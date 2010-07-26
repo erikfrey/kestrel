@@ -13,7 +13,7 @@ AS_USER="root"
 DAEMON="/usr/bin/daemon"
 QUEUE_PATH="/mnt/spool/kestrel"
 
-HEAP_OPTS="-Xmx2048m -Xms1024m -XX:NewSize=256m"
+HEAP_OPTS="-Xmx512m"
 JMX_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=22134 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false"
 # add JMX_OPTS below if you want jmx support.
 JAVA_OPTS="-server -verbosegc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:+PrintTenuringDistribution -XX:+UseConcMarkSweepGC -XX:+UseParNewGC $HEAP_OPTS"
