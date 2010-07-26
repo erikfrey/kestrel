@@ -63,7 +63,7 @@
     <chmod dir="${dist.dir}/scripts" includes="*" perm="ugo+x" />
   </target>
 
-  <target name="package" depends="make-non-executable-jar, make-executable-jar,
+  <target name="package" depends="prepare, compile, make-non-executable-jar, make-executable-jar,
     generate-scripts, docs" description="build complete jar(s) and docs">
     <ivy:makepom ivyfile="${basedir}/ivy/ivy.xml" pomfile="${dist.dir}/${dist.name}.pom">
       <mapping conf="*" scope="runtime" />
